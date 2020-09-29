@@ -6,7 +6,6 @@ import { Redirect, Route } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const token = getTokenIfExists();
-  
   return (
     <Route
       {...rest}

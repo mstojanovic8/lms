@@ -1,1 +1,1 @@
-export { getToken, logout } from '../modules/auth';
+export { getToken, logout, resetLoginError } from '../modules/auth';

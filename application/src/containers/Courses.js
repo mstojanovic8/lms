@@ -1,8 +1,15 @@
 import React, { useEffect, memo } from 'react';
-import { useDispatch } from 'react-redux';
 
 const Courses = ({ history }) => {
-  return <div>Courses</div>;
+  const goHome = () => {
+    history.push('/');
+  };
+  return (
+    <div>
+      <div>Courses</div>
+      <button onClick={goHome}>Go Home</button>
+    </div>
+  );
 };
 
 export default memo(Courses);

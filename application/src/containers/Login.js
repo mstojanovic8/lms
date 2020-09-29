@@ -1,7 +1,7 @@
 import React, { useEffect, memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { getToken, logout } from '../redux/actions/global';
+import { getToken, resetLoginError } from '../redux/actions/global';
 import { getTokenIfExists } from '../utils';
 import * as selectors from '../redux/selectors';
 
@@ -11,23 +11,34 @@ const Login = ({ history }) => {
   const dispatch = useDispatch();
   const token = getTokenIfExists();
 
+  const resetErrorMessage = () => {
+    dispatch(resetLoginError());
+  };
+
   const handleLoginSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(getToken({ email, password }));
-    history.replace('/');
+    //=============== mock login params ===============//
+    let mockEmail = 'test@test.com';
+    let mockPassword = 123123123;
+    setEmail(mockEmail);
+    setPassword(mockPassword);
+    //=============== mock login params end===============//
+    debugger;
+    dispatch(getToken({ email, password })).then(() => {
+      history.replace('/');
+    });
   };
 
   const error = useSelector((state) => selectors.getError(state));
 
   if (token) {
     console.log('========== IMA TOKEN =========== ');
-    
+
     return <Redirect to='/' />;
   }
 
   const renderError = () => {
-
     return (
       error !== '' && (
         <div>
@@ -48,7 +59,11 @@ const Login = ({ history }) => {
             type='text'
             name='email'
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              resetErrorMessage;
+            }}
+            //ref={inputRef}
           />
         </div>
         <div>

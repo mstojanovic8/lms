@@ -1,7 +1,6 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { getToken, logout } from '../redux/actions/global';
+import { logout } from '../redux/actions/global';
 import { getCourses } from '../redux/actions/courses';
 import * as selectors from '../redux/selectors';
 
@@ -9,12 +8,7 @@ const Home = ({ history }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      getCourses({
-        viaResource: 'course',
-        viaResourceId: 1
-      })
-    );
+    dispatch(getCourses());
   }, []);
 
   const handleLogout = () => {
@@ -32,27 +26,21 @@ const Home = ({ history }) => {
     return selectors.getCoursesByType(state);
   });
 
-  console.log('========== coursesByType =========== ', coursesByType);
+  //console.log('========== coursesByType =========== ', coursesByType);
 
   return (
     <div>
-      App <br />
       <div>
         <h2>Courses By Type</h2>
         {Object.keys(coursesByType).map((type) => {
-          console.log(
-            '========== coursesByType[type] =========== ',
-            coursesByType[type]
-          );
-
           return (
-            <div>
-              <h2>Type {coursesByType[type][0].type.name}</h2>
+            <div key={coursesByType[type][0].type.name}>
+              <h2>Type: {coursesByType[type][0].type.name}</h2>
               {coursesByType[type].map((course) => {
                 return (
-                  <div>
-                    <div> Course name : {coursesByType[type].title} </div>
-                    <div> Course start : {coursesByType[type].start} </div>
+                  <div key={course.title}>
+                    <div> Course name : {course.title} </div>
+                    <div> Course start : {course.start} </div>
                   </div>
                 );
               })}

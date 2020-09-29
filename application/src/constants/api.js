@@ -6,3 +6,4 @@ export const AUTH_REFRESH_TOKEN_API = '/auth/refresh';
 export const AUTH_LOGOUT_API = '/auth/logout';
 
 export const COURSE_API_URL = '/course';
+export const SCOPE_API_URL = '/scope';
