@@ -13,10 +13,10 @@ module.exports = (env, argv) => {
     entry: { [fileName]: packageJSON.main },
     output: {
       path: path.resolve(__dirname, publicFolderRelativePath),
-      filename: 'index.js'
+      filename: 'index.js',
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
     },
     module: {
       rules: [
@@ -26,22 +26,34 @@ module.exports = (env, argv) => {
           use: {
             loader: 'babel-loader',
             options: {
-              envName: isProduction ? 'production' : 'development'
-            }
-          }
+              envName: isProduction ? 'production' : 'development',
+            },
+          },
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader']
-        }
-      ]
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  ident: 'postcss',
+                  plugins: [require('tailwindcss'), require('autoprefixer')],
+                },
+              },
+            },
+          ],
+        },
+      ],
     },
     stats: {
       assets: true,
       colors: true,
       errors: true,
       errorDetails: true,
-      hash: true
+      hash: true,
     },
     optimization: {
       minimize: isProduction,
@@ -49,29 +61,29 @@ module.exports = (env, argv) => {
         new TerserPlugin({
           terserOptions: {
             output: {
-              comments: false
-            }
+              comments: false,
+            },
           },
-          extractComments: false
-        })
-      ]
+          extractComments: false,
+        }),
+      ],
     },
     performance: {
-      hints: 'warning'
+      hints: 'warning',
     },
     plugins: [
       new WebpackNotifierPlugin({
         title: fileName,
-        alwaysNotify: true
+        alwaysNotify: true,
       }),
       new HtmlWebPackPlugin({
-        template: '../public/index.html'
-      })
+        template: '../public/index.html',
+      }),
       // , new BundleAnalyzerPlugin()
     ],
     devServer: {
-      historyApiFallback: true
-    }
+      historyApiFallback: true,
+    },
   };
   if (!isProduction) {
     config.devtool = 'source-map';

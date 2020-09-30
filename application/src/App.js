@@ -5,6 +5,7 @@ import { Login } from './containers';
 import ProtectedRoute from './components/ProtectedRoute';
 import * as selectors from './redux/selectors';
 import routes from './routes';
+import './styles.css';
 
 const App = () => {
   const hasToken = useSelector((state) => {

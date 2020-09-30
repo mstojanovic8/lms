@@ -1,4 +1,5 @@
 import './config';
+import './styles.css';
 
 import React from 'react';
 import { render } from 'react-dom';
@@ -9,7 +10,6 @@ import configureStore from './redux/store/configureStore';
 import { manageInitialState } from './redux/reducers/global/initialState';
 window.LMS = {
   render: (element) => {
-
     const store = configureStore(manageInitialState());
     render(
       <Provider store={store}>
@@ -19,5 +19,5 @@ window.LMS = {
       </Provider>,
       element
     );
-  }
+  },
 };
