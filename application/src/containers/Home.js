@@ -2,6 +2,7 @@ import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/actions/global';
 import { getCourses } from '../redux/actions/courses';
+import { getScopes } from '../redux/actions/scopes';
 import * as selectors from '../redux/selectors';
 
 const Home = ({ history }) => {
@@ -9,6 +10,7 @@ const Home = ({ history }) => {
 
   useEffect(() => {
     dispatch(getCourses());
+    dispatch(getScopes());
   }, []);
 
   const handleLogout = () => {
@@ -25,12 +27,14 @@ const Home = ({ history }) => {
   const coursesByType = useSelector((state) => {
     return selectors.getCoursesByType(state);
   });
-
-  //console.log('========== coursesByType =========== ', coursesByType);
+  const scopesByName = useSelector((state) => {
+    return selectors.getScopesByName(state);
+  });
 
   return (
     <div>
       <div>
+        <h1>Scope: {Object.keys(scopesByName)[0]}</h1>
         <h2>Courses By Type</h2>
         {Object.keys(coursesByType).map((type) => {
           return (

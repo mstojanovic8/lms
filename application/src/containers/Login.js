@@ -6,8 +6,9 @@ import { getTokenIfExists } from '../utils';
 import * as selectors from '../redux/selectors';
 
 const Login = ({ history }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // initial state for email and pw just for dev
+  const [email, setEmail] = useState('test@test.com');
+  const [password, setPassword] = useState('agbC8yK6Sddz57p');
   const dispatch = useDispatch();
   const token = getTokenIfExists();
 
@@ -17,14 +18,6 @@ const Login = ({ history }) => {
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-
-    //=============== mock login params ===============//
-    let mockEmail = 'test@test.com';
-    let mockPassword = 123123123;
-    setEmail(mockEmail);
-    setPassword(mockPassword);
-    //=============== mock login params end===============//
-    debugger;
     dispatch(getToken({ email, password })).then(() => {
       history.replace('/');
     });

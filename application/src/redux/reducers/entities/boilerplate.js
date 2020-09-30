@@ -5,10 +5,10 @@ import * as selectors from '../../selectors';
 
 const byIdReducer = (entityName) => (state = {}, action) => {
   if (
-    selectors.getActionPayload(action)
-    && selectors.getNormalized(action)
-    && selectors.getNormalizedEntities(action)
-    && selectors.getNormalizedEntities(action)[entityName]
+    selectors.getActionPayload(action) &&
+    selectors.getNormalized(action) &&
+    selectors.getNormalizedEntities(action) &&
+    selectors.getNormalizedEntities(action)[entityName]
   ) {
     let oldData = state;
     const newData = selectors.getNormalizedEntities(action)[entityName];
@@ -20,10 +20,7 @@ const byIdReducer = (entityName) => (state = {}, action) => {
   return state;
 };
 
-const isLoadingReducer = (actions) => (
-  state = false,
-  action
-) => {
+const isLoadingReducer = (actions) => (state = false, action) => {
   switch (action.type) {
     case actions.init:
       return true;
@@ -37,10 +34,10 @@ const isLoadingReducer = (actions) => (
 
 const allIdsReducer = (entityName) => (state = [], action) => {
   if (
-    selectors.getActionPayload(action)
-    && selectors.getNormalized(action)
-    && selectors.getNormalizedEntities(action)
-    && selectors.getNormalizedEntities(action)[entityName]
+    selectors.getActionPayload(action) &&
+    selectors.getNormalized(action) &&
+    selectors.getNormalizedEntities(action) &&
+    selectors.getNormalizedEntities(action)[entityName]
   ) {
     let oldData = state;
 
@@ -51,33 +48,26 @@ const allIdsReducer = (entityName) => (state = [], action) => {
     return [
       ...new Set([
         ...oldData,
-        ...Object.keys(selectors.getNormalizedEntities(action)[entityName])
-      ])
+        ...Object.keys(selectors.getNormalizedEntities(action)[entityName]),
+      ]),
     ];
   }
   return state;
 };
 
-export const initializedReducer = (actions) => (
-  state = false,
-  action
-) => {
+export const initializedReducer = (actions) => (state = false, action) => {
   if (action.type === actions.success) {
     return true;
   }
   return state;
 };
 
-const entityReducer = (entity, actions) => combineReducers({
-  byId: byIdReducer(entity),
-  allIds: allIdsReducer(entity),
-  isLoading: isLoadingReducer(actions),
-  isInitialized: initializedReducer(actions)
-});
+const entityReducer = (entity, actions) =>
+  combineReducers({
+    byId: byIdReducer(entity),
+    allIds: allIdsReducer(entity),
+    isLoading: isLoadingReducer(actions),
+    isInitialized: initializedReducer(actions),
+  });
 
-export {
-  entityReducer,
-  isLoadingReducer,
-  byIdReducer,
-  allIdsReducer
-};
+export { entityReducer, isLoadingReducer, byIdReducer, allIdsReducer };

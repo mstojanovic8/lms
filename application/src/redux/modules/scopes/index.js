@@ -14,7 +14,7 @@ export const SCOPES_ACTIONS = {
 };
 
 const fetchScopesInit = () => ({
-  type: FETCH_SCOPES.init,
+  type: SCOPES_ACTIONS.init,
 });
 
 const fetchScopesSuccess = (normalizedData) => {
@@ -37,7 +37,7 @@ export function getScopes() {
     dispatch(fetchScopesInit());
     return api.getScopes().then(
       (response) => {
-        const normalized = normalize(response.data.data, schema.coursesArray);
+        const normalized = normalize(response.data.data, schema.scopesArray);
         // const normalizedByType = normalize(
         //   response.data.data,
         //   schema.coursesByTypeArray

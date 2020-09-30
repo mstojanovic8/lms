@@ -22,3 +22,19 @@ export const courseByType = new schema.Entity(
 );
 
 export const coursesByTypeArray = new schema.Array(courseByType);
+
+export const scopeSchema = new schema.Entity(
+  CONST.entities.SCOPES_ENTITY_KEY,
+  {},
+  { idAttribute: (entity) => entity.id }
+);
+
+export const scopesArray = new schema.Array(scopeSchema);
+
+export const scopeByName = new schema.Entity(
+  CONST.entities.SCOPES_ENTITY_KEY,
+  {},
+  { idAttribute: (entity) => entity.name }
+);
+
+export const scopesByNameArray = new schema.Array(scopeByName);

@@ -1,5 +1,6 @@
 export * from './users';
 export * from './courses';
+export * from './scopes';
 
 export const getActionPayload = (action) => action.payload;
 
