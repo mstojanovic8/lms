@@ -16,7 +16,3 @@ export const getIsAuthLoading = createSelector(
 export const getError = createSelector([getGlobalState], (globalState) => {
   return globalState.error;
 });
-
-export const getUserId = createSelector([getGlobalState], (globalState) => {
-  return globalState.userId;
-});

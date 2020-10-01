@@ -10,7 +10,7 @@ export const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE';
 export const USERS_ACTIONS = {
   init: FETCH_USERS,
   success: FETCH_USERS_SUCCESS,
-  failure: FETCH_USERS_FAILURE,
+  failure: FETCH_USERS_FAILURE
 };
 
 const fetchUsersInit = () => ({
@@ -20,26 +20,27 @@ const fetchUsersInit = () => ({
 const fetchUsersSuccess = (normalizedData) => ({
   type: USERS_ACTIONS.success,
   payload: {
-    normalized: normalizedData,
-  },
+    normalized: normalizedData
+  }
 });
 
 const fetchUsersFailure = () => ({
-  type: USERS_ACTIONS.failure,
+  type: USERS_ACTIONS.failure
 });
 
-export function getUsersInfo() {
+export function getSingleUser(userId) {
   return (dispatch) => {
     dispatch(fetchUsersInit());
-    return api.getUsersInfo().then(
-      (response) => {
-        const normalized = normalize(response.data, schema.userSchema);
+    return api.getSingleUser(userId)
+      .then((response) => {
+        const normalized = normalize(
+          response.data.data,
+          schema.userSchema
+        );
         dispatch(fetchUsersSuccess(normalized));
         return response;
-      },
-      () => {
+      }, () => {
         dispatch(fetchUsersFailure());
-      }
-    );
+      });
   };
 }
