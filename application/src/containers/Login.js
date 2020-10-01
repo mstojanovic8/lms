@@ -42,33 +42,54 @@ const Login = ({ history }) => {
   };
 
   return (
-    <div>
+    <div className='w-full max-w-xs m-auto'>
       <h2>Login</h2>
-      <form onSubmit={handleLoginSubmit}>
+      <form
+        className='bg-white shadow-md px-8 pt-6 pb-8 mb-4'
+        onSubmit={handleLoginSubmit}
+      >
         {renderError()}
-        <div>
-          <label htmlFor='email'>Email: </label>
+        <div className='mb-4'>
+          <label
+            className='block text-purple-500 text-sm font-bold mb-2'
+            htmlFor='email'
+          >
+            Email
+          </label>
           <input
-            type='text'
+            className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            type='email'
+            placeholder='example@example.com'
             name='email'
             value={email}
             onChange={(event) => {
               setEmail(event.target.value);
               resetErrorMessage;
             }}
-            //ref={inputRef}
           />
         </div>
-        <div>
-          <label htmlFor='password'>Password: </label>
+        <div className='mb-4'>
+          <label
+            className='block text-purple-500 text-sm font-bold mb-2'
+            htmlFor='password'
+          >
+            Password:{' '}
+          </label>
           <input
+            className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
             type='password'
             name='password'
+            placeholder='******************'
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <button type='submit'>Login</button>
+        <button
+          className='bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+          type='submit'
+        >
+          Login
+        </button>
       </form>
     </div>
   );

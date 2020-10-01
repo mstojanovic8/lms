@@ -4,13 +4,13 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: Containers.Home
+    component: Containers.Home,
   },
   {
     path: '/courses',
     exact: true,
-    component: Containers.Courses
-  }
+    component: Containers.Courses,
+  },
 ];
 
 export default routes;

@@ -34,16 +34,8 @@ module.exports = (env, argv) => {
           test: /\.css$/,
           use: [
             'style-loader',
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: {
-                  ident: 'postcss',
-                  plugins: [require('tailwindcss'), require('autoprefixer')],
-                },
-              },
-            },
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            'postcss-loader',
           ],
         },
       ],
@@ -82,7 +74,9 @@ module.exports = (env, argv) => {
       // , new BundleAnalyzerPlugin()
     ],
     devServer: {
-      historyApiFallback: true,
+      watchContentBase: true,
+      contentBase: path.resolve(__dirname, 'dist'),
+      open: true,
     },
   };
   if (!isProduction) {
