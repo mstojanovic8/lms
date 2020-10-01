@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { getUserId } from '../global';
 
 export const getUsers = (state) => state.entities.users;
 
@@ -12,6 +13,9 @@ export const getIsUsersInitialized = createSelector([getUsers], (users) => {
   return users.isInitialized;
 });
 
-export const getCurrentUser = createSelector([getUsersById], (users) => {
-  return Object.values(users)[0];
-});
+export const getCurrentUser = createSelector(
+  [getUsersById, getUserId],
+  (users, userId) => {
+    return userId ? users[userId] : null;
+  }
+);
