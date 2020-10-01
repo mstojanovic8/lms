@@ -4,10 +4,12 @@ import { logout } from '../redux/actions/global';
 import { getCourses } from '../redux/actions/courses';
 import { getScopes } from '../redux/actions/scopes';
 import { getUserInfo } from '../redux/actions/users';
+import { withNavigation } from '../context';
 import * as selectors from '../redux/selectors';
 
 const Home = ({ history }) => {
   const dispatch = useDispatch();
+  console.log('========== withNavigation =========== ', withNavigation);
 
   useEffect(() => {
     dispatch(getCourses());
@@ -80,4 +82,4 @@ const Home = ({ history }) => {
   );
 };
 
-export default memo(Home);
+export default withNavigation(memo(Home));

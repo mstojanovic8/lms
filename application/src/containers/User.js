@@ -1,6 +1,6 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { withNavigation } from '../context';
 import { getUsersInfo } from '../redux/actions/users';
 import * as selectors from '../redux/selectors';
 
@@ -31,4 +31,4 @@ const User = ({ history }) => {
   );
 };
 
-export default memo(User);
+export default memo(withNavigation(User));

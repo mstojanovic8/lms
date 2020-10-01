@@ -1,7 +1,7 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTeamInfo } from '../redux/actions/teams';
-
+import { withNavigation } from '../context';
 const Team = ({ history }) => {
   const goHome = () => {
     history.push('/');
@@ -14,4 +14,4 @@ const Team = ({ history }) => {
   );
 };
 
-export default memo(Team);
+export default memo(withNavigation(Team));
