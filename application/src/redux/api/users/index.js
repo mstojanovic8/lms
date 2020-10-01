@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { CONST } from '../../../constants';
 
-export const getSingleUser = () => {
+export const getUsersInfo = () => {
   axios.defaults.headers.common[
     'Authorization'
   ] = `Bearer ${localStorage.getItem('token')}`;

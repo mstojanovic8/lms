@@ -77,6 +77,7 @@ module.exports = (env, argv) => {
       watchContentBase: true,
       contentBase: path.resolve(__dirname, 'dist'),
       open: true,
+      historyApiFallback: true,
     },
   };
   if (!isProduction) {

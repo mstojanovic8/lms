@@ -1,1 +1,1 @@
-export { getSingleUser } from '../modules/users';
+export { getUsersInfo } from '../modules/users';

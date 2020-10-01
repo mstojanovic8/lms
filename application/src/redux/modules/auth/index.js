@@ -1,5 +1,5 @@
 import * as api from '../../api';
-
+import { getUsersInfo } from '../users';
 const FETCH_TOKEN = 'FETCH_TOKEN';
 const FETCH_TOKEN_SUCCESS = 'FETCH_TOKEN_SUCCESS';
 const FETCH_TOKEN_FAILURE = 'FETCH_TOKEN_FAILURE';
@@ -39,6 +39,7 @@ export function getToken({ email, password }) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('expires', response.data.expires_in);
         dispatch(fetchTokenSuccess());
+        dispatch(getUsersInfo());
         return Promise.resolve();
       },
       (error) => {
