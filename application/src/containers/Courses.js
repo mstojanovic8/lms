@@ -1,5 +1,4 @@
 import React, { useEffect, memo } from 'react';
-import { withNavigation } from '../context';
 
 const Courses = ({ history }) => {
   const goHome = () => {
@@ -13,4 +12,4 @@ const Courses = ({ history }) => {
   );
 };
 
-export default memo(withNavigation(Courses));
+export default memo(Courses);

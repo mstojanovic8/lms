@@ -2,7 +2,6 @@ import { getTokenIfExists } from '../../../utils';
 
 export const initialState = {
   hasToken: false,
-  userId: null,
   isAuthLoading: false,
   error: ''
 };

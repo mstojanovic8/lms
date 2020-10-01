@@ -3,7 +3,6 @@ import { createSelector } from 'reselect';
 export const getCourses = (state) => state.entities.courses;
 
 export const getCoursesById = (state) => state.entities.courses.byId;
-
 export const getCoursesByType = createSelector([getCoursesById], (courses) => {
   const coursesByType = {};
   Object.keys(courses).forEach((id) => {
@@ -13,6 +12,7 @@ export const getCoursesByType = createSelector([getCoursesById], (courses) => {
       course,
     ];
   });
+
   return coursesByType;
 });
 
