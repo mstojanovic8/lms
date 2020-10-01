@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/actions/global';
 import { getCourses } from '../redux/actions/courses';
 import { getScopes } from '../redux/actions/scopes';
+import { withNavigation } from '../context';
 import * as selectors from '../redux/selectors';
 
 const Home = ({ history }) => {
@@ -68,4 +69,4 @@ const Home = ({ history }) => {
   );
 };
 
-export default memo(Home);
+export default withNavigation(memo(Home));
