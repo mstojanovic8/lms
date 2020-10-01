@@ -4,8 +4,6 @@ import Navigation from '../containers/Navigation';
 
 export default function withNavigation(WrappedComponent) {
   const Dashboard = ({ match, ...rest }) => {
-    const { path } = match;
-
     return (
       <Fragment>
         <Navigation />
